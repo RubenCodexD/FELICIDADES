@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f2">
+  <title>Feliz cumpleaños, Andrea</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="float-star star-one">✦</span>
+    <span class="float-star star-two">✧</span>
+    <span class="float-star star-three">✦</span>
+    <span class="float-star star-four">✧</span>
+    <span class="float-heart heart-one">♡</span>
+    <span class="float-heart heart-two">♡</span>
+    <span class="orb orb-one"></span>
+    <span class="orb orb-two"></span>
+    <span class="orb orb-three"></span>
+  </div>
+
+  <div class="glow glow-one" aria-hidden="true"></div>
+  <div class="glow glow-two" aria-hidden="true"></div>
+
+  <main class="page-shell">
+    <header class="topline">
+      <span class="tiny-star">✦</span>
+      UN DÍA ESPECIAL PARA ALGUIEN INCREÍBLE
+      <span class="tiny-star">✦</span>
+    </header>
+
+    <section class="card" aria-labelledby="birthday-title">
+      <div class="eyebrow"><span></span> 15 · TU DÍA <span></span></div>
+
+      <h1 id="birthday-title">
+        Feliz cumpleaños,<br>
+        <em class="name-glow">Andrea</em>
+      </h1>
+
+      <p class="intro">Hoy celebramos tu vida, tu corazón y todo lo que eres.</p>
+
+      <div class="cake-scene" aria-label="Una torta con una vela encendida. Haz clic en la vela para pedir un deseo.">
+        <div class="sparkle sparkle-a">✧</div>
+        <div class="sparkle sparkle-b">✦</div>
+        <div class="sparkle sparkle-c">✧</div>
+
+        <button
+          class="candle-button"
+          id="candle"
+          type="button"
+          aria-label="Apagar la vela y descubrir tu mensaje"
+          aria-pressed="false"
+        >
+          <span class="flame" aria-hidden="true"></span>
+          <span class="wick"></span>
+          <span class="candle"><i></i><i></i></span>
+        </button>
+
+        <div class="cake-top"></div>
+        <div class="cake">
+          <span class="icing"></span>
+          <span class="drip drip-one"></span>
+          <span class="drip drip-two"></span>
+          <span class="drip drip-three"></span>
+          <span class="cake-shine"></span>
+        </div>
+        <div class="plate"></div>
+      </div>
+
+      <p class="wish-hint" id="wish-hint">
+        Cierra los ojos, pide un deseo y apaga la vela tocándola ✨
+      </p>
+
+      <button
+        class="message-button"
+        id="message-button"
+        type="button"
+        aria-controls="reveal"
+        aria-expanded="false"
+        hidden
+      >
+        Ver mis frases de ánimo <span aria-hidden="true">↓</span>
+      </button>
+
+      <div class="reveal" id="reveal" aria-live="polite" aria-hidden="true" inert>
+        <div class="reveal-kicker">PARA TI, ANDREA</div>
+
+        <h2>¡Que este nuevo año<br>te devuelva todo lo bonito!</h2>
+
+        <p>
+          Sabemos que este año de internado ha sido exigente y que a veces cuesta
+          encontrar fuerzas. Pero mira todo lo que ya has recorrido: cada día
+          que acompañas y cuidas a alguien habla de tu vocación, tu valentía y
+          tu enorme corazón.
+        </p>
+
+        <div class="quotes">
+          <blockquote>
+            “No te rindas, Andrea. Este año de internado es duro, pero no define
+            tus límites: también está mostrando toda tu fortaleza.”
+          </blockquote>
+
+          <blockquote>
+            “Ya falta poco. Un turno, un día y un paso a la vez; no tienes que
+            resolver todo hoy.”
+          </blockquote>
+
+          <blockquote>
+            “Descansar también es parte de seguir adelante. Sé paciente y amable
+            contigo misma.”
+          </blockquote>
+
+          <blockquote>
+            “Tu esfuerzo deja huella en cada persona que cuidas. Quizá no siempre
+            lo veas, pero tu presencia importa.”
+          </blockquote>
+
+          <blockquote>
+            “No tienes que ser perfecta para ser una gran enfermera: tu empatía,
+            tus ganas y tu humanidad ya hacen la diferencia.”
+          </blockquote>
+
+          <blockquote>
+            “Cuando llegue un día difícil, recuerda cuántos otros días difíciles
+            ya atravesaste. Puedes con el siguiente paso.”
+          </blockquote>
+
+          <blockquote>
+            “Estamos muy orgullosos de ti, de tu entrega y de la enfermera en la
+            que te estás convirtiendo.”
+          </blockquote>
+
+          <blockquote>
+            “Que este cumpleaños te recuerde que también mereces recibir todo el
+            cuidado y el cariño que das.”
+          </blockquote>
+        </div>
+
+        <p class="closing">
+          No te rindas, Andrea. Estamos contigo, creemos en ti y nos sentimos muy
+          orgullosos. Ya falta poquito: sigue a tu ritmo, que todo tu esfuerzo
+          va a valer la pena. 💛
+        </p>
+
+        <div class="signature">Con mucho cariño <span>♡</span></div>
+      </div>
+
+      <div class="footer-note">
+        <span>✿</span>
+        Hoy celebramos a una futura enfermera increíble
+        <span>✿</span>
+      </div>
+    </section>
+
+    <footer class="bottomline">HECHO CON MUCHO CARIÑO PARA TI</footer>
+  </main>
+
+  <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
+  <script src="script.js"></script>
+</body>
+</html>
