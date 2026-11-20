@@ -1,165 +1,241 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff8f2">
-  <title>Feliz cumpleaños, Andrea</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#05010f">
+<title>Andrea ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#05010f; --bg2:#120531; --rosa:#ff7ac6; --lila:#b388ff; --cian:#7fe7ff; --oro:#ffe08a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;overflow:hidden}
+  body{
+    font-family:'Quicksand',system-ui,sans-serif;
+    color:#fff;
+    background:radial-gradient(ellipse at 50% 30%,var(--bg2) 0%,var(--bg1) 70%);
+    display:flex;align-items:center;justify-content:center;
+    min-height:100dvh;
+    padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom);
+    user-select:none;
+  }
+
+  /* Fondo de estrellas */
+  #cielo{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+
+  /* Nebulosas suaves de fondo */
+  .nebulosa{position:fixed;border-radius:50%;filter:blur(60px);opacity:.35;z-index:0;pointer-events:none;will-change:transform}
+  .n1{width:70vw;height:70vw;background:var(--lila);top:-20vw;left:-25vw;animation:flotar 18s ease-in-out infinite}
+  .n2{width:60vw;height:60vw;background:var(--rosa);bottom:-20vw;right:-20vw;animation:flotar 22s ease-in-out infinite reverse}
+
+  @keyframes flotar{50%{transform:translate(6vw,4vw) scale(1.1)}}
+
+  main{position:relative;z-index:2;text-align:center;width:100%;max-width:520px}
+
+  /* Luna decorativa */
+  .luna{
+    width:54px;height:54px;margin:0 auto 10px;border-radius:50%;
+    box-shadow:-12px 6px 0 0 var(--oro);
+    transform:rotate(-20deg);
+    filter:drop-shadow(0 0 12px rgba(255,224,138,.7));
+    animation:latido 4s ease-in-out infinite;
+  }
+  @keyframes latido{50%{filter:drop-shadow(0 0 22px rgba(255,224,138,1))}}
+
+  /* ===== EL NOMBRE CON LA GALAXIA DENTRO ===== */
+  .nombre{
+    font-family:'Pacifico',cursive;
+    font-size:clamp(4.2rem,24vw,9rem);
+    line-height:1.25;
+    padding:0 .15em;
+    color:transparent;
+    background:
+      radial-gradient(1.5px 1.5px at 20% 30%,#fff 50%,transparent 51%),
+      radial-gradient(1px 1px at 70% 60%,#fff 50%,transparent 51%),
+      radial-gradient(2px 2px at 40% 80%,#fff 50%,transparent 51%),
+      radial-gradient(1px 1px at 85% 20%,#fff 50%,transparent 51%),
+      radial-gradient(1.5px 1.5px at 55% 45%,#fff 50%,transparent 51%),
+      radial-gradient(circle at 30% 40%,rgba(255,122,198,.95),transparent 35%),
+      radial-gradient(circle at 70% 55%,rgba(127,231,255,.9),transparent 35%),
+      radial-gradient(circle at 50% 50%,rgba(179,136,255,1),transparent 60%),
+      linear-gradient(135deg,#1a0640,#3b0d7a 40%,#0b1a4a 70%,#2a0650);
+    background-size:60px 60px,90px 90px,120px 120px,75px 75px,100px 100px,200% 200%,200% 200%,200% 200%,100% 100%;
+    -webkit-background-clip:text;background-clip:text;
+    animation:galaxia 14s linear infinite;
+    filter:drop-shadow(0 0 14px rgba(179,136,255,.55)) drop-shadow(0 0 30px rgba(255,122,198,.35));
+  }
+  @keyframes galaxia{
+    0%  {background-position:0 0,0 0,0 0,0 0,0 0,0% 0%,100% 100%,50% 50%,0 0}
+    50% {background-position:60px 30px,-90px 45px,120px -60px,-75px 37px,50px 100px,100% 100%,0% 0%,60% 40%,0 0}
+    100%{background-position:120px 60px,-180px 90px,240px -120px,-150px 75px,100px 200px,0% 0%,100% 100%,50% 50%,0 0}
+  }
+
+  .subtitulo{
+    margin-top:2px;font-size:.95rem;letter-spacing:.35em;text-transform:uppercase;
+    color:rgba(255,255,255,.75);
+  }
+
+  /* Frases motivacionales */
+  .tarjeta{
+    margin:28px auto 0;padding:20px 18px;min-height:118px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:22px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  .frase{
+    font-size:clamp(1.05rem,4.6vw,1.35rem);font-weight:600;line-height:1.45;
+    transition:opacity .7s ease,transform .7s ease;
+  }
+  .frase.oculta{opacity:0;transform:translateY(10px)}
+
+  .puntos{display:flex;justify-content:center;gap:7px;margin-top:14px}
+  .puntos span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);transition:all .4s}
+  .puntos span.activo{background:var(--rosa);width:20px;border-radius:5px;box-shadow:0 0 8px var(--rosa)}
+
+  .pista{margin-top:18px;font-size:.8rem;color:rgba(255,255,255,.5)}
+
+  /* Corazoncitos/brillos al tocar */
+  .brillo{
+    position:fixed;z-index:3;pointer-events:none;font-size:20px;
+    animation:subir 1.4s ease-out forwards;
+  }
+  @keyframes subir{to{transform:translate(var(--dx),-120px) scale(.4) rotate(40deg);opacity:0}}
+
+  /* Planeta decorativo */
+  .planeta{
+    position:fixed;z-index:1;width:46px;height:46px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,#ffd1ec,var(--rosa) 55%,#7a1d5c);
+    top:12%;right:9%;
+    animation:flotar 10s ease-in-out infinite;
+  }
+  .planeta::after{
+    content:"";position:absolute;left:-14px;top:18px;width:74px;height:12px;border-radius:50%;
+    border:2px solid rgba(255,224,138,.8);transform:rotate(-18deg);
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
 </head>
 <body>
-  <div class="ambient" aria-hidden="true">
-    <span class="float-star star-one">✦</span>
-    <span class="float-star star-two">✧</span>
-    <span class="float-star star-three">✦</span>
-    <span class="float-star star-four">✧</span>
-    <span class="float-heart heart-one">♡</span>
-    <span class="float-heart heart-two">♡</span>
-    <span class="orb orb-one"></span>
-    <span class="orb orb-two"></span>
-    <span class="orb orb-three"></span>
-  </div>
+  <canvas id="cielo"></canvas>
+  <div class="nebulosa n1"></div>
+  <div class="nebulosa n2"></div>
+  <div class="planeta"></div>
 
-  <div class="glow glow-one" aria-hidden="true"></div>
-  <div class="glow glow-two" aria-hidden="true"></div>
+  <main>
+    <div class="luna"></div>
+    <h1 class="nombre">Andrea</h1>
+    <p class="subtitulo">brilla como tu universo</p>
 
-  <main class="page-shell">
-    <header class="topline">
-      <span class="tiny-star">✦</span>
-      UN DÍA ESPECIAL PARA ALGUIEN INCREÍBLE
-      <span class="tiny-star">✦</span>
-    </header>
-
-    <section class="card" aria-labelledby="birthday-title">
-      <div class="eyebrow"><span></span> 15 · TU DÍA <span></span></div>
-
-      <h1 id="birthday-title">
-        Feliz cumpleaños,<br>
-        <em class="name-glow">Andrea</em>
-      </h1>
-
-      <p class="intro">Hoy celebramos tu vida, tu corazón y todo lo que eres.</p>
-
-      <div class="cake-scene" aria-label="Una torta con una vela encendida. Haz clic en la vela para pedir un deseo.">
-        <div class="sparkle sparkle-a">✧</div>
-        <div class="sparkle sparkle-b">✦</div>
-        <div class="sparkle sparkle-c">✧</div>
-
-        <button
-          class="candle-button"
-          id="candle"
-          type="button"
-          aria-label="Apagar la vela y descubrir tu mensaje"
-          aria-pressed="false"
-        >
-          <span class="flame" aria-hidden="true"></span>
-          <span class="wick"></span>
-          <span class="candle"><i></i><i></i></span>
-        </button>
-
-        <div class="cake-top"></div>
-        <div class="cake">
-          <span class="icing"></span>
-          <span class="drip drip-one"></span>
-          <span class="drip drip-two"></span>
-          <span class="drip drip-three"></span>
-          <span class="cake-shine"></span>
-        </div>
-        <div class="plate"></div>
-      </div>
-
-      <p class="wish-hint" id="wish-hint">
-        Cierra los ojos, pide un deseo y apaga la vela tocándola ✨
-      </p>
-
-      <button
-        class="message-button"
-        id="message-button"
-        type="button"
-        aria-controls="reveal"
-        aria-expanded="false"
-        hidden
-      >
-        Ver mis frases de ánimo <span aria-hidden="true">↓</span>
-      </button>
-
-      <div class="reveal" id="reveal" aria-live="polite" aria-hidden="true" inert>
-        <div class="reveal-kicker">PARA TI, ANDREA</div>
-
-        <h2>¡Que este nuevo año<br>te devuelva todo lo bonito!</h2>
-
-        <p>
-          Sabemos que este año de internado ha sido exigente y que a veces cuesta
-          encontrar fuerzas. Pero mira todo lo que ya has recorrido: cada día
-          que acompañas y cuidas a alguien habla de tu vocación, tu valentía y
-          tu enorme corazón.
-        </p>
-
-        <div class="quotes">
-          <blockquote>
-            “No te rindas, Andrea. Este año de internado es duro, pero no define
-            tus límites: también está mostrando toda tu fortaleza.”
-          </blockquote>
-
-          <blockquote>
-            “Ya falta poco. Un turno, un día y un paso a la vez; no tienes que
-            resolver todo hoy.”
-          </blockquote>
-
-          <blockquote>
-            “Descansar también es parte de seguir adelante. Sé paciente y amable
-            contigo misma.”
-          </blockquote>
-
-          <blockquote>
-            “Tu esfuerzo deja huella en cada persona que cuidas. Quizá no siempre
-            lo veas, pero tu presencia importa.”
-          </blockquote>
-
-          <blockquote>
-            “No tienes que ser perfecta para ser una gran enfermera: tu empatía,
-            tus ganas y tu humanidad ya hacen la diferencia.”
-          </blockquote>
-
-          <blockquote>
-            “Cuando llegue un día difícil, recuerda cuántos otros días difíciles
-            ya atravesaste. Puedes con el siguiente paso.”
-          </blockquote>
-
-          <blockquote>
-            “Estamos muy orgullosos de ti, de tu entrega y de la enfermera en la
-            que te estás convirtiendo.”
-          </blockquote>
-
-          <blockquote>
-            “Que este cumpleaños te recuerde que también mereces recibir todo el
-            cuidado y el cariño que das.”
-          </blockquote>
-        </div>
-
-        <p class="closing">
-          No te rindas, Andrea. Estamos contigo, creemos en ti y nos sentimos muy
-          orgullosos. Ya falta poquito: sigue a tu ritmo, que todo tu esfuerzo
-          va a valer la pena. 💛
-        </p>
-
-        <div class="signature">Con mucho cariño <span>♡</span></div>
-      </div>
-
-      <div class="footer-note">
-        <span>✿</span>
-        Hoy celebramos a una futura enfermera increíble
-        <span>✿</span>
-      </div>
-    </section>
-
-    <footer class="bottomline">HECHO CON MUCHO CARIÑO PARA TI</footer>
+    <div class="tarjeta">
+      <p class="frase" id="frase"></p>
+    </div>
+    <div class="puntos" id="puntos"></div>
+    <p class="pista">toca la pantalla ✨</p>
   </main>
 
-  <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
-  <script src="script.js"></script>
+<script>
+(() => {
+  /* ===== Frases ===== */
+  const frases = [
+    "Eres más fuerte de lo que crees y más capaz de lo que imaginas 💫",
+    "Cada estrella brilla a su tiempo, y tu momento está llegando 🌟",
+    "No te rindas: lo difícil hoy será tu orgullo mañana 🚀",
+    "Tienes un universo entero dentro de ti 🌌",
+    "Pequeños pasos también te llevan a las estrellas ✨",
+    "Cree en ti como el cielo cree en la luna 🌙",
+    "Tu sonrisa ilumina más que mil galaxias 💖"
+  ];
+  const el = document.getElementById('frase');
+  const puntos = document.getElementById('puntos');
+  frases.forEach(() => puntos.appendChild(document.createElement('span')));
+  let i = 0, timer;
+
+  function mostrar(n){
+    el.classList.add('oculta');
+    setTimeout(() => {
+      i = (n + frases.length) % frases.length;
+      el.textContent = frases[i];
+      [...puntos.children].forEach((p,k)=>p.classList.toggle('activo',k===i));
+      el.classList.remove('oculta');
+    }, 450);
+  }
+  function auto(){ clearInterval(timer); timer = setInterval(()=>mostrar(i+1), 5000); }
+  el.textContent = frases[0]; puntos.children[0].classList.add('activo'); auto();
+
+  /* ===== Toque: siguiente frase + brillos ===== */
+  const emojis = ['✨','💖','⭐','💫','🌸'];
+  document.addEventListener('pointerdown', e => {
+    mostrar(i+1); auto();
+    for(let k=0;k<5;k++){
+      const s=document.createElement('span');
+      s.className='brillo';
+      s.textContent=emojis[(Math.random()*emojis.length)|0];
+      s.style.left=(e.clientX-10)+'px'; s.style.top=(e.clientY-10)+'px';
+      s.style.setProperty('--dx',(Math.random()*120-60)+'px');
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),1400);
+    }
+  });
+
+  /* ===== Cielo de estrellas (canvas optimizado) ===== */
+  const c = document.getElementById('cielo'), ctx = c.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2); // limita resolución en celulares
+  let W, H, estrellas = [], fugaces = [];
+
+  function iniciar(){
+    W = innerWidth; H = innerHeight;
+    c.width = W*dpr; c.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const cantidad = Math.min(Math.floor(W*H/2500), 260); // menos estrellas en pantallas chicas
+    estrellas = Array.from({length:cantidad}, () => ({
+      x:Math.random()*W, y:Math.random()*H,
+      r:Math.random()*1.4+.3,
+      f:Math.random()*Math.PI*2, v:Math.random()*.03+.008,
+      col:Math.random()<.15 ? '#ffd1ec' : (Math.random()<.15 ? '#bfefff' : '#ffffff')
+    }));
+  }
+
+  function nuevaFugaz(){
+    fugaces.push({x:Math.random()*W*.8+W*.2, y:Math.random()*H*.4, l:Math.random()*80+60, vida:1});
+  }
+
+  let activo = true;
+  document.addEventListener('visibilitychange',()=>{ activo = !document.hidden; if(activo) requestAnimationFrame(dibujar); });
+
+  function dibujar(){
+    if(!activo) return;
+    ctx.clearRect(0,0,W,H);
+    for(const s of estrellas){
+      s.f += s.v;
+      ctx.globalAlpha = .35 + Math.abs(Math.sin(s.f))*.65;
+      ctx.fillStyle = s.col;
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.283); ctx.fill();
+    }
+    if(Math.random() < .006 && fugaces.length < 2) nuevaFugaz();
+    for(let k=fugaces.length-1;k>=0;k--){
+      const f=fugaces[k];
+      const g=ctx.createLinearGradient(f.x,f.y,f.x+f.l,f.y-f.l*.45);
+      g.addColorStop(0,'rgba(255,255,255,'+f.vida+')'); g.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.globalAlpha=1; ctx.strokeStyle=g; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.moveTo(f.x,f.y); ctx.lineTo(f.x+f.l,f.y-f.l*.45); ctx.stroke();
+      f.x -= 7; f.y += 3.2; f.vida -= .018;
+      if(f.vida<=0) fugaces.splice(k,1);
+    }
+    requestAnimationFrame(dibujar);
+  }
+
+  let rt; addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(iniciar,200); });
+  iniciar(); dibujar();
+})();
+</script>
 </body>
 </html>
