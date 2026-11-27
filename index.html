@@ -2,239 +2,526 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#05010f">
 <title>Andrea ✨</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Orbitron:wght@500;700;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg1:#05010f; --bg2:#120531; --rosa:#ff7ac6; --lila:#b388ff; --cian:#7fe7ff; --oro:#ffe08a;
-  }
+  :root{--bg1:#05010f;--bg2:#140636;--rosa:#ff7ac6;--lila:#b388ff;--cian:#7fe7ff;--oro:#ffe08a}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{height:100%;overflow:hidden}
+  html,body{height:100%;overflow:hidden;overscroll-behavior:none}
   body{
-    font-family:'Quicksand',system-ui,sans-serif;
-    color:#fff;
-    background:radial-gradient(ellipse at 50% 30%,var(--bg2) 0%,var(--bg1) 70%);
-    display:flex;align-items:center;justify-content:center;
-    min-height:100dvh;
-    padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom);
-    user-select:none;
+    font-family:'Quicksand',system-ui,sans-serif;color:#fff;
+    background:radial-gradient(ellipse at 50% 40%,var(--bg2) 0%,var(--bg1) 72%);
+    touch-action:none;user-select:none;-webkit-user-select:none;
   }
-
-  /* Fondo de estrellas */
   #cielo{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+  #fx{position:fixed;inset:0;width:100%;height:100%;z-index:25;pointer-events:none}
 
-  /* Nebulosas suaves de fondo */
-  .nebulosa{position:fixed;border-radius:50%;filter:blur(60px);opacity:.35;z-index:0;pointer-events:none;will-change:transform}
-  .n1{width:70vw;height:70vw;background:var(--lila);top:-20vw;left:-25vw;animation:flotar 18s ease-in-out infinite}
-  .n2{width:60vw;height:60vw;background:var(--rosa);bottom:-20vw;right:-20vw;animation:flotar 22s ease-in-out infinite reverse}
-
-  @keyframes flotar{50%{transform:translate(6vw,4vw) scale(1.1)}}
-
-  main{position:relative;z-index:2;text-align:center;width:100%;max-width:520px}
-
-  /* Luna decorativa */
-  .luna{
-    width:54px;height:54px;margin:0 auto 10px;border-radius:50%;
-    box-shadow:-12px 6px 0 0 var(--oro);
-    transform:rotate(-20deg);
-    filter:drop-shadow(0 0 12px rgba(255,224,138,.7));
-    animation:latido 4s ease-in-out infinite;
+  /* ===== Barra superior ===== */
+  .barra{
+    position:fixed;z-index:20;left:0;right:0;top:0;
+    padding:calc(env(safe-area-inset-top) + 12px) 16px 0;
+    display:flex;justify-content:space-between;align-items:center;pointer-events:none;
   }
-  @keyframes latido{50%{filter:drop-shadow(0 0 22px rgba(255,224,138,1))}}
+  .contador{
+    pointer-events:auto;font:600 .72rem 'Orbitron',sans-serif;letter-spacing:.08em;
+    padding:9px 14px;border-radius:99px;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  }
+  .contador b{color:var(--rosa)}
+  #btnSecreto{
+    pointer-events:auto;font-size:1.3rem;width:44px;height:44px;border-radius:50%;border:0;
+    background:rgba(255,122,198,.18);box-shadow:0 0 18px rgba(255,122,198,.6);
+    color:#fff;display:none;animation:latido 1.6s ease-in-out infinite;cursor:pointer;
+  }
+  @keyframes latido{50%{transform:scale(1.12);box-shadow:0 0 30px rgba(255,122,198,1)}}
 
-  /* ===== EL NOMBRE CON LA GALAXIA DENTRO ===== */
+  #escena{position:fixed;inset:0;z-index:2}
+
+  /* ===== NOMBRE: letra espacial con galaxia dentro ===== */
   .nombre{
-    font-family:'Pacifico',cursive;
-    font-size:clamp(4.2rem,24vw,9rem);
-    line-height:1.25;
-    padding:0 .15em;
+    position:absolute;left:50%;transform:translate(-50%,-50%);z-index:5;white-space:nowrap;pointer-events:none;
+    font-family:'Great Vibes',cursive;font-weight:400;
+    font-size:clamp(4.6rem,25vw,9.5rem);letter-spacing:0;line-height:1.35;padding:0 .25em;
     color:transparent;
     background:
       radial-gradient(1.5px 1.5px at 20% 30%,#fff 50%,transparent 51%),
       radial-gradient(1px 1px at 70% 60%,#fff 50%,transparent 51%),
       radial-gradient(2px 2px at 40% 80%,#fff 50%,transparent 51%),
-      radial-gradient(1px 1px at 85% 20%,#fff 50%,transparent 51%),
       radial-gradient(1.5px 1.5px at 55% 45%,#fff 50%,transparent 51%),
-      radial-gradient(circle at 30% 40%,rgba(255,122,198,.95),transparent 35%),
-      radial-gradient(circle at 70% 55%,rgba(127,231,255,.9),transparent 35%),
-      radial-gradient(circle at 50% 50%,rgba(179,136,255,1),transparent 60%),
-      linear-gradient(135deg,#1a0640,#3b0d7a 40%,#0b1a4a 70%,#2a0650);
-    background-size:60px 60px,90px 90px,120px 120px,75px 75px,100px 100px,200% 200%,200% 200%,200% 200%,100% 100%;
+      radial-gradient(circle at 25% 40%,rgba(255,214,90,1),transparent 32%),
+      radial-gradient(circle at 75% 55%,rgba(80,230,200,1),transparent 32%),
+      radial-gradient(circle at 50% 50%,rgba(255,150,90,.95),transparent 45%),
+      linear-gradient(110deg,#ffd84d,#ff9f5a 25%,#5be3c8 50%,#6fc3ff 75%,#ffe27a);
+    background-size:60px 60px,90px 90px,120px 120px,100px 100px,200% 200%,200% 200%,200% 200%,200% 100%;
     -webkit-background-clip:text;background-clip:text;
     animation:galaxia 14s linear infinite;
-    filter:drop-shadow(0 0 14px rgba(179,136,255,.55)) drop-shadow(0 0 30px rgba(255,122,198,.35));
+    filter:drop-shadow(0 0 10px rgba(255,214,90,.55)) drop-shadow(0 0 24px rgba(91,227,200,.4));
   }
   @keyframes galaxia{
-    0%  {background-position:0 0,0 0,0 0,0 0,0 0,0% 0%,100% 100%,50% 50%,0 0}
-    50% {background-position:60px 30px,-90px 45px,120px -60px,-75px 37px,50px 100px,100% 100%,0% 0%,60% 40%,0 0}
-    100%{background-position:120px 60px,-180px 90px,240px -120px,-150px 75px,100px 200px,0% 0%,100% 100%,50% 50%,0 0}
+    0%  {background-position:0 0,0 0,0 0,0 0,0% 0%,100% 100%,50% 50%,0 0}
+    50% {background-position:60px 30px,-90px 45px,120px -60px,50px 100px,100% 100%,0% 0%,60% 40%,100% 0}
+    100%{background-position:120px 60px,-180px 90px,240px -120px,100px 200px,0% 0%,100% 100%,50% 50%,200% 0}
   }
-
   .subtitulo{
-    margin-top:2px;font-size:.95rem;letter-spacing:.35em;text-transform:uppercase;
-    color:rgba(255,255,255,.75);
+    position:absolute;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none;white-space:nowrap;
+    font:500 .62rem 'Orbitron',sans-serif;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.65);
   }
 
-  /* Frases motivacionales */
-  .tarjeta{
-    margin:28px auto 0;padding:20px 18px;min-height:118px;
-    display:flex;align-items:center;justify-content:center;
-    border-radius:22px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.14);
-    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-    box-shadow:0 10px 30px rgba(0,0,0,.35);
-  }
-  .frase{
-    font-size:clamp(1.05rem,4.6vw,1.35rem);font-weight:600;line-height:1.45;
-    transition:opacity .7s ease,transform .7s ease;
-  }
-  .frase.oculta{opacity:0;transform:translateY(10px)}
-
-  .puntos{display:flex;justify-content:center;gap:7px;margin-top:14px}
-  .puntos span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);transition:all .4s}
-  .puntos span.activo{background:var(--rosa);width:20px;border-radius:5px;box-shadow:0 0 8px var(--rosa)}
-
-  .pista{margin-top:18px;font-size:.8rem;color:rgba(255,255,255,.5)}
-
-  /* Corazoncitos/brillos al tocar */
-  .brillo{
-    position:fixed;z-index:3;pointer-events:none;font-size:20px;
-    animation:subir 1.4s ease-out forwards;
-  }
-  @keyframes subir{to{transform:translate(var(--dx),-120px) scale(.4) rotate(40deg);opacity:0}}
-
-  /* Planeta decorativo */
+  /* ===== Planetas realistas ===== */
   .planeta{
-    position:fixed;z-index:1;width:46px;height:46px;border-radius:50%;
-    background:radial-gradient(circle at 35% 35%,#ffd1ec,var(--rosa) 55%,#7a1d5c);
-    top:12%;right:9%;
-    animation:flotar 10s ease-in-out infinite;
+    position:absolute;left:0;top:0;border:0;background:none;border-radius:50%;cursor:pointer;
+    will-change:transform,opacity;
   }
-  .planeta::after{
-    content:"";position:absolute;left:-14px;top:18px;width:74px;height:12px;border-radius:50%;
-    border:2px solid rgba(255,224,138,.8);transform:rotate(-18deg);
+  .planeta::before{content:"";position:absolute;inset:-14px;border-radius:50%} /* zona táctil */
+  .sup{
+    position:absolute;inset:0;border-radius:50%;overflow:hidden;
+    box-shadow:0 0 16px var(--brillo);
+    transition:filter .3s;
+  }
+  .sup::after{ /* sombra de luz y noche */
+    content:"";position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.35),transparent 35%),
+               radial-gradient(circle at 70% 72%,rgba(0,0,0,.65),transparent 62%);
+  }
+  .planeta.golpe .sup{filter:brightness(2.2) saturate(1.4)}
+  .planeta.visto .sup{box-shadow:0 0 18px var(--brillo),0 0 0 2px rgba(255,255,255,.5)}
+  .planeta.anillo::after{
+    content:"";position:absolute;left:-42%;top:36%;width:184%;height:28%;border-radius:50%;pointer-events:none;
+    border:3px solid rgba(232,210,160,.85);border-top-color:rgba(232,210,160,.25);
+    box-shadow:0 0 0 2px rgba(200,170,120,.35);transform:rotate(-16deg);
+  }
+  .etiqueta{
+    position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:6px;pointer-events:none;
+    font:700 .52rem 'Orbitron',sans-serif;letter-spacing:.12em;text-transform:uppercase;
+    color:rgba(255,255,255,.85);white-space:nowrap;text-shadow:0 0 6px #000;
   }
 
-  @media (prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important}
+  /* texturas */
+  .mercurio{--brillo:#9a9a9a;background:
+    radial-gradient(circle at 60% 40%,#6e6a66 0 8%,transparent 9%),
+    radial-gradient(circle at 35% 65%,#77726c 0 10%,transparent 11%),
+    radial-gradient(circle at 70% 75%,#6a655f 0 6%,transparent 7%),#a8a29a}
+  .venus{--brillo:#f2c97a;background:
+    repeating-linear-gradient(170deg,#f3d9a0 0 6px,#e8bf75 6px 11px,#f6e2b4 11px 15px)}
+  .tierra{--brillo:#4fa8ff;background:
+    radial-gradient(ellipse 30% 22% at 35% 35%,#3f9a4a 60%,transparent 62%),
+    radial-gradient(ellipse 22% 30% at 65% 60%,#4aa553 60%,transparent 62%),
+    radial-gradient(ellipse 40% 8% at 50% 20%,rgba(255,255,255,.85) 50%,transparent 60%),
+    radial-gradient(ellipse 35% 7% at 40% 82%,rgba(255,255,255,.7) 50%,transparent 60%),
+    radial-gradient(circle at 50% 50%,#2f7fe0,#163f8f)}
+  .marte{--brillo:#ff6a3d;background:
+    radial-gradient(ellipse 30% 14% at 45% 40%,#9c3a1a 50%,transparent 60%),
+    radial-gradient(ellipse 20% 8% at 50% 8%,#fff 50%,transparent 60%),
+    radial-gradient(circle,#d65a2c,#a63a17)}
+  .jupiter{--brillo:#e0a96d;background:
+    radial-gradient(ellipse 14% 8% at 64% 62%,#c0502a 60%,transparent 70%),
+    repeating-linear-gradient(180deg,#e9d2b0 0 9%,#c08a5a 9% 15%,#f0e0c6 15% 22%,#a8724a 22% 27%,#dcbf98 27% 34%)}
+  .saturno{--brillo:#e8cf8f;background:
+    repeating-linear-gradient(180deg,#f0dca8 0 12%,#d9bb78 12% 20%,#f4e6c0 20% 30%,#cfae6c 30% 36%)}
+  .neptuno{--brillo:#3f7bff;background:
+    radial-gradient(ellipse 18% 10% at 40% 45%,#1a2f8a 60%,transparent 70%),
+    repeating-linear-gradient(180deg,#3d6cf0 0 14%,#2f58d8 14% 22%,#4a7cff 22% 34%)}
+
+  /* ===== Universos (galaxias) ===== */
+  .universo{position:absolute;left:0;top:0;width:86px;height:86px;border:0;background:none;cursor:pointer;will-change:transform}
+  .universo .espiral{
+    position:absolute;inset:0;border-radius:50%;
+    background:
+      radial-gradient(circle,#fff 0 6%,var(--u1) 14%,transparent 42%),
+      conic-gradient(from 0deg,transparent 0 6%,var(--u1) 12%,transparent 22%,var(--u2) 30%,transparent 40%,var(--u1) 48%,transparent 58%,var(--u2) 66%,transparent 76%,var(--u1) 84%,transparent 94%);
+    -webkit-mask:radial-gradient(circle,#000 22%,transparent 68%);mask:radial-gradient(circle,#000 22%,transparent 68%);
+    filter:blur(2px);opacity:.95;animation:girar 16s linear infinite;
   }
+  .universo.visto .espiral{filter:blur(2px) brightness(1.35)}
+  .universo.golpe .espiral{filter:blur(1px) brightness(2.4)}
+  @keyframes girar{to{transform:rotate(360deg)}}
+  .universo .etiqueta{top:84%}
+
+  .pista{
+    position:fixed;z-index:6;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 18px);padding:0 20px;
+    text-align:center;font-size:.78rem;color:rgba(255,255,255,.55);pointer-events:none;transition:opacity .6s;
+  }
+
+  /* ===== Tarjeta de frase al CENTRO ===== */
+  #velo{
+    position:fixed;inset:0;z-index:30;opacity:0;pointer-events:none;transition:opacity .4s;
+    background:radial-gradient(circle at 50% 50%,rgba(20,6,54,.55),rgba(3,0,12,.82));
+    -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+  }
+  #velo.on{opacity:1;pointer-events:auto}
+  #tarjeta{
+    position:fixed;z-index:31;left:50%;top:50%;width:min(88vw,400px);
+    max-height:calc(100dvh - 120px);overflow:auto;
+    transform:translate(-50%,-50%) scale(.3) rotate(-8deg);opacity:0;pointer-events:none;
+    transition:transform .55s cubic-bezier(.18,1.3,.4,1),opacity .35s;
+    padding:28px 22px 22px;border-radius:28px;text-align:center;
+    background:linear-gradient(160deg,rgba(48,18,104,.93),rgba(14,5,38,.95));
+    border:1px solid rgba(255,255,255,.16);
+    box-shadow:0 0 0 1px rgba(179,136,255,.25),0 20px 60px rgba(0,0,0,.6),0 0 60px var(--aura,rgba(179,136,255,.45));
+  }
+  #tarjeta.on{transform:translate(-50%,-50%) scale(1) rotate(0);opacity:1;pointer-events:auto}
+  #tarjeta .icono{position:relative;width:86px;height:86px;margin:-2px auto 14px;border-radius:50%}
+  #tarjeta .icono.planeta{position:relative;left:auto;top:auto;animation:flota 3s ease-in-out infinite}
+  @keyframes flota{50%{transform:translateY(-6px)}}
+  #tarjeta .tipo{font:500 .6rem 'Orbitron',sans-serif;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  #tarjeta h2{font:900 1.45rem 'Orbitron',sans-serif;letter-spacing:.06em;margin:4px 0 14px;color:var(--oro);text-transform:uppercase}
+  #tarjeta p{font-size:clamp(1.05rem,4.8vw,1.28rem);font-weight:600;line-height:1.5}
+  #tarjeta button{
+    margin-top:22px;width:100%;padding:15px;border:0;border-radius:16px;cursor:pointer;
+    font:700 .78rem 'Orbitron',sans-serif;letter-spacing:.08em;color:#1a0533;
+    background:linear-gradient(90deg,var(--rosa),var(--lila),var(--cian));
+  }
+  #tarjeta.secreto h2{color:var(--rosa)}
+
+  /* destello de pantalla */
+  #flash{position:fixed;inset:0;z-index:29;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--fx) var(--fy),rgba(255,255,255,.55),transparent 45%)}
+  #flash.on{animation:flash .5s ease-out}
+  @keyframes flash{0%{opacity:1}100%{opacity:0}}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-  <canvas id="cielo"></canvas>
-  <div class="nebulosa n1"></div>
-  <div class="nebulosa n2"></div>
-  <div class="planeta"></div>
+<canvas id="cielo"></canvas>
 
-  <main>
-    <div class="luna"></div>
-    <h1 class="nombre">Andrea</h1>
-    <p class="subtitulo">brilla como tu universo</p>
+<div class="barra">
+  <div class="contador">🪐 <b id="cuenta">0</b>/<span id="total">0</span> descubiertos</div>
+  <button id="btnSecreto" aria-label="Mensaje secreto">💌</button>
+</div>
 
-    <div class="tarjeta">
-      <p class="frase" id="frase"></p>
-    </div>
-    <div class="puntos" id="puntos"></div>
-    <p class="pista">toca la pantalla ✨</p>
-  </main>
+<div id="escena">
+  <h1 class="nombre" id="nombre">Andrea</h1>
+  <p class="subtitulo" id="subtitulo">brilla como tu universo</p>
+</div>
+
+<p class="pista" id="pista">toca un planeta o una galaxia ✨ · desliza para girar</p>
+
+<div id="flash"></div>
+<canvas id="fx"></canvas>
+<div id="velo"></div>
+<section id="tarjeta" role="dialog" aria-modal="true">
+  <div class="icono" id="tIcono"></div>
+  <div class="tipo" id="tTipo"></div>
+  <h2 id="tTitulo"></h2>
+  <p id="tFrase"></p>
+  <button id="tCerrar">Seguir explorando ✨</button>
+</section>
 
 <script>
 (() => {
-  /* ===== Frases ===== */
-  const frases = [
-    "Eres más fuerte de lo que crees y más capaz de lo que imaginas 💫",
-    "Cada estrella brilla a su tiempo, y tu momento está llegando 🌟",
-    "No te rindas: lo difícil hoy será tu orgullo mañana 🚀",
-    "Tienes un universo entero dentro de ti 🌌",
-    "Pequeños pasos también te llevan a las estrellas ✨",
-    "Cree en ti como el cielo cree en la luna 🌙",
-    "Tu sonrisa ilumina más que mil galaxias 💖"
+  /* ============ ✏️ PERSONALIZA AQUÍ ============ */
+  // c = color del brillo/explosión · t = tamaño · r = órbita (0 interna, 1 media, 2 externa)
+  const planetas = [
+    {n:'Mercurio', cls:'mercurio', c:'#c9c3bb', t:26, r:0, f:'Pequeños pasos también te llevan a las estrellas ✨'},
+    {n:'Venus',    cls:'venus',    c:'#ffd27a', t:34, r:0, f:'Tu sonrisa ilumina más que mil galaxias 💖'},
+    {n:'Tierra',   cls:'tierra',   c:'#5fb6ff', t:36, r:1, f:'Eres más fuerte de lo que crees y más capaz de lo que imaginas 💫'},
+    {n:'Marte',    cls:'marte',    c:'#ff7a45', t:30, r:1, f:'No te rindas: lo difícil hoy será tu orgullo mañana 🚀'},
+    {n:'Júpiter',  cls:'jupiter',  c:'#f0b27a', t:50, r:2, f:'Tu corazón es tan grande como Júpiter: no dejes que nadie lo haga pequeño 🪐'},
+    {n:'Saturno',  cls:'saturno',  c:'#ffe3a0', t:40, r:2, f:'Cada estrella brilla a su tiempo, y tu momento está llegando 🌟', a:true},
+    {n:'Neptuno',  cls:'neptuno',  c:'#5d8cff', t:32, r:2, f:'Cree en ti como el cielo cree en la luna 🌙'}
   ];
-  const el = document.getElementById('frase');
-  const puntos = document.getElementById('puntos');
-  frases.forEach(() => puntos.appendChild(document.createElement('span')));
-  let i = 0, timer;
+  const universos = [
+    {n:'Andrómeda',  u:['#ff9ad5','#b388ff'], f:'Tienes un universo entero dentro de ti: nunca dejes de soñar en grande 🌌'},
+    {n:'Vía Láctea', u:['#7fe7ff','#b388ff'], f:'Está bien ir despacio. Hasta las galaxias tardan millones de años en formarse 🌀'},
+    {n:'Triángulo',  u:['#ffe08a','#ff7ac6'], f:'Lo que hoy te da miedo, mañana será la historia de lo valiente que fuiste 🔥'}
+  ];
+  const mensajeFinal = {
+    titulo:'Mensaje secreto',
+    frase:'Andrea, aunque recorra mil galaxias, nunca me olvido de ti. Siempre vas a tener un lugar en mi universo 💜'
+  };
+  /* ============================================= */
 
-  function mostrar(n){
-    el.classList.add('oculta');
-    setTimeout(() => {
-      i = (n + frases.length) % frases.length;
-      el.textContent = frases[i];
-      [...puntos.children].forEach((p,k)=>p.classList.toggle('activo',k===i));
-      el.classList.remove('oculta');
-    }, 450);
+  const $ = id => document.getElementById(id);
+  const escena = $('escena'), nombre = $('nombre'), subt = $('subtitulo');
+  const total = planetas.length + universos.length;
+  $('total').textContent = total;
+
+  let vistos = new Set();
+  try { vistos = new Set(JSON.parse(localStorage.getItem('andrea_vistos2') || '[]')); } catch(e){}
+  const guardar = () => { try { localStorage.setItem('andrea_vistos2', JSON.stringify([...vistos])); } catch(e){} };
+  function actualizarCuenta(){
+    $('cuenta').textContent = vistos.size;
+    if (vistos.size >= total) $('btnSecreto').style.display = 'block';
   }
-  function auto(){ clearInterval(timer); timer = setInterval(()=>mostrar(i+1), 5000); }
-  el.textContent = frases[0]; puntos.children[0].classList.add('activo'); auto();
 
-  /* ===== Toque: siguiente frase + brillos ===== */
-  const emojis = ['✨','💖','⭐','💫','🌸'];
-  document.addEventListener('pointerdown', e => {
-    mostrar(i+1); auto();
-    for(let k=0;k<5;k++){
-      const s=document.createElement('span');
-      s.className='brillo';
-      s.textContent=emojis[(Math.random()*emojis.length)|0];
-      s.style.left=(e.clientX-10)+'px'; s.style.top=(e.clientY-10)+'px';
-      s.style.setProperty('--dx',(Math.random()*120-60)+'px');
-      document.body.appendChild(s);
-      setTimeout(()=>s.remove(),1400);
-    }
+  /* ---- Crear planetas ---- */
+  const objs = [];
+  planetas.forEach((p, k) => {
+    const b = document.createElement('button');
+    b.className = 'planeta' + (p.a ? ' anillo' : '');
+    b.setAttribute('aria-label', p.n);
+    b.style.cssText = `width:${p.t}px;height:${p.t}px;margin:${-p.t/2}px 0 0 ${-p.t/2}px`;
+    b.innerHTML = `<span class="sup ${p.cls}"></span><span class="etiqueta">${p.n}</span>`;
+    const id = 'p' + k;
+    if (vistos.has(id)) b.classList.add('visto');
+    escena.appendChild(b);
+    const enAnillo = planetas.filter(q => q.r === p.r);
+    const o = {el:b, tipo:'p', id, d:p, ang: enAnillo.indexOf(p) / enAnillo.length * Math.PI * 2 + p.r * .9};
+    objs.push(o);
+    b.addEventListener('click', () => tocar(o));
   });
+  universos.forEach((u, k) => {
+    const b = document.createElement('button');
+    b.className = 'universo';
+    b.setAttribute('aria-label', 'Galaxia ' + u.n);
+    b.style.cssText = `--u1:${u.u[0]};--u2:${u.u[1]};margin:-43px 0 0 -43px`;
+    b.innerHTML = `<span class="espiral" style="animation-duration:${14 + k*5}s;${k%2?'animation-direction:reverse':''}"></span><span class="etiqueta">${u.n}</span>`;
+    const id = 'u' + k;
+    if (vistos.has(id)) b.classList.add('visto');
+    escena.appendChild(b);
+    const o = {el:b, tipo:'u', id, d:u, k};
+    objs.push(o);
+    b.addEventListener('click', () => tocar(o));
+  });
+  actualizarCuenta();
 
-  /* ===== Cielo de estrellas (canvas optimizado) ===== */
-  const c = document.getElementById('cielo'), ctx = c.getContext('2d');
-  const dpr = Math.min(window.devicePixelRatio || 1, 2); // limita resolución en celulares
-  let W, H, estrellas = [], fugaces = [];
+  /* ---- Efecto al tocar: supernova ---- */
+  const fx = $('fx'), fctx = fx.getContext('2d');
+  let chispas = [], ondas = [];
+  function supernova(x, y, color, fuerza = 1){
+    ondas.push({x, y, r:6, vida:1, col:color, v:7 * fuerza});
+    ondas.push({x, y, r:2, vida:1, col:'#ffffff', v:4.5 * fuerza});
+    const n = Math.round(46 * fuerza);
+    for (let k = 0; k < n; k++){
+      const a = Math.random() * Math.PI * 2, v = (Math.random() * 5 + 1.5) * fuerza;
+      chispas.push({x, y, vx:Math.cos(a) * v, vy:Math.sin(a) * v, vida:1, s:Math.random() * 2.2 + .8,
+        col: Math.random() < .35 ? '#ffffff' : color});
+    }
+    const fl = $('flash');
+    fl.style.setProperty('--fx', x + 'px'); fl.style.setProperty('--fy', y + 'px');
+    fl.classList.remove('on'); void fl.offsetWidth; fl.classList.add('on');
+  }
+
+  /* ---- Tarjeta al centro ---- */
+  const tarjeta = $('tarjeta'), velo = $('velo');
+  let abierta = false, pendienteSecreto = false;
+
+  function tocar(o){
+    if (movido || abierta) return;
+    const r = o.el.getBoundingClientRect();
+    const x = r.left + r.width / 2, y = r.top + r.height / 2;
+    const color = o.tipo === 'p' ? o.d.c : o.d.u[0];
+    supernova(x, y, color);
+    o.el.classList.add('golpe');
+    setTimeout(() => o.el.classList.remove('golpe'), 350);
+    if (navigator.vibrate) navigator.vibrate([10, 30, 18]);
+    tarjeta.style.transformOrigin = 'center';
+    setTimeout(() => abrir(o, color), 380);
+  }
+
+  function abrir(o, color){
+    const ic = $('tIcono');
+    tarjeta.classList.remove('secreto');
+    ic.className = 'icono'; ic.innerHTML = ''; ic.style.cssText = '';
+    if (o === 'secreto'){
+      tarjeta.classList.add('secreto');
+      tarjeta.style.setProperty('--aura', 'rgba(255,122,198,.75)');
+      ic.style.cssText = 'background:radial-gradient(circle,#fff 0 10%,#ff7ac6 35%,transparent 70%);display:flex;align-items:center;justify-content:center;font-size:2.6rem';
+      ic.textContent = '💜';
+      $('tTipo').textContent = 'para ti';
+      $('tTitulo').textContent = mensajeFinal.titulo;
+      $('tFrase').textContent = mensajeFinal.frase;
+      supernova(innerWidth / 2, innerHeight / 2, '#ff7ac6', 1.8);
+    } else {
+      const d = o.d;
+      tarjeta.style.setProperty('--aura', color + '88');
+      if (o.tipo === 'p'){
+        ic.className = 'icono planeta' + (d.a ? ' anillo' : '');
+        ic.innerHTML = `<span class="sup ${d.cls}"></span>`;
+        $('tTipo').textContent = 'planeta';
+      } else {
+        ic.style.cssText = `background:radial-gradient(circle,#fff 0 6%,${d.u[0]} 18%,transparent 45%),conic-gradient(from 0deg,transparent 0 6%,${d.u[0]} 12%,transparent 22%,${d.u[1]} 30%,transparent 40%,${d.u[0]} 48%,transparent 58%,${d.u[1]} 66%,transparent 76%,${d.u[0]} 84%,transparent 94%);-webkit-mask:radial-gradient(circle,#000 22%,transparent 68%);mask:radial-gradient(circle,#000 22%,transparent 68%);animation:girar 8s linear infinite`;
+        $('tTipo').textContent = 'galaxia';
+      }
+      $('tTitulo').textContent = d.n;
+      $('tFrase').textContent = d.f;
+      const nuevo = !vistos.has(o.id);
+      vistos.add(o.id); o.el.classList.add('visto'); guardar(); actualizarCuenta();
+      if (nuevo && vistos.size === total){
+        pendienteSecreto = true;
+        $('tCerrar').textContent = '¡Desbloqueaste un mensaje! 💌';
+      }
+    }
+    tarjeta.classList.add('on'); velo.classList.add('on'); abierta = true;
+    $('pista').style.opacity = 0;
+  }
+  function cerrar(){
+    tarjeta.classList.remove('on'); velo.classList.remove('on');
+    setTimeout(() => abierta = false, 250);
+    if (pendienteSecreto){
+      pendienteSecreto = false;
+      $('tCerrar').textContent = 'Seguir explorando ✨';
+      setTimeout(() => abrir('secreto'), 500);
+    }
+  }
+  $('tCerrar').addEventListener('click', cerrar);
+  velo.addEventListener('click', cerrar);
+  $('btnSecreto').addEventListener('click', () => { if (!abierta) abrir('secreto'); });
+
+  /* ---- Gestos ---- */
+  let arrastrando = false, movido = false, x0 = 0, y0 = 0, lx = 0, ly = 0;
+  let rotExtra = 0, velRot = 0, incl = .4, inclObj = .4, parX = 0, parY = 0, parXo = 0, parYo = 0;
+  addEventListener('pointerdown', e => {
+    if (abierta) return;
+    arrastrando = true; movido = false; x0 = lx = e.clientX; y0 = ly = e.clientY;
+  });
+  addEventListener('pointermove', e => {
+    if (!arrastrando) return;
+    const dx = e.clientX - lx, dy = e.clientY - ly;
+    if (Math.hypot(e.clientX - x0, e.clientY - y0) > 8) movido = true;
+    if (movido){
+      velRot = dx * .006; rotExtra += velRot;
+      inclObj = Math.min(.72, Math.max(.18, inclObj - dy * .002));
+    }
+    parXo = (e.clientX / innerWidth - .5) * -24;
+    parYo = (e.clientY / innerHeight - .5) * -24;
+    lx = e.clientX; ly = e.clientY;
+  });
+  const soltar = () => { arrastrando = false; setTimeout(() => movido = false, 30); };
+  addEventListener('pointerup', soltar); addEventListener('pointercancel', soltar);
+
+  /* ---- Fondo ---- */
+  const c = $('cielo'), ctx = c.getContext('2d');
+  const dpr = Math.min(devicePixelRatio || 1, 1.75);
+  let W, H, cx, cy, R, estrellas = [], fugaces = [], gal, galS;
+
+  function crearGalaxia(){
+    galS = Math.round(Math.max(W, H) * 1.15);
+    gal = document.createElement('canvas');
+    gal.width = gal.height = Math.round(galS * dpr);
+    const g = gal.getContext('2d'); g.scale(dpr, dpr);
+    const m = galS / 2;
+    const nucleo = g.createRadialGradient(m, m, 0, m, m, m * .35);
+    nucleo.addColorStop(0, 'rgba(255,240,250,.55)');
+    nucleo.addColorStop(.4, 'rgba(179,136,255,.22)');
+    nucleo.addColorStop(1, 'rgba(179,136,255,0)');
+    g.fillStyle = nucleo; g.fillRect(0, 0, galS, galS);
+    const cols = ['#ffffff','#ffd1ec','#ff7ac6','#b388ff','#7fe7ff'];
+    const N = W < 500 ? 1800 : 2800, brazos = 3;
+    for (let i = 0; i < N; i++){
+      const t = Math.pow(Math.random(), .7);
+      const ang = (i % brazos) * Math.PI * 2 / brazos + t * 5.5 + (Math.random() - .5) * (.9 - t * .5);
+      const rr = t * m * .95 + (Math.random() - .5) * 18;
+      g.globalAlpha = (1 - t) * .7 + .15;
+      g.fillStyle = cols[Math.min(cols.length - 1, (t * cols.length + Math.random()) | 0)];
+      const s = Math.random() * 1.6 + .4;
+      g.fillRect(m + Math.cos(ang) * rr, m + Math.sin(ang) * rr, s, s);
+    }
+    g.globalAlpha = 1;
+  }
 
   function iniciar(){
     W = innerWidth; H = innerHeight;
-    c.width = W*dpr; c.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
-    const cantidad = Math.min(Math.floor(W*H/2500), 260); // menos estrellas en pantallas chicas
-    estrellas = Array.from({length:cantidad}, () => ({
-      x:Math.random()*W, y:Math.random()*H,
-      r:Math.random()*1.4+.3,
-      f:Math.random()*Math.PI*2, v:Math.random()*.03+.008,
-      col:Math.random()<.15 ? '#ffd1ec' : (Math.random()<.15 ? '#bfefff' : '#ffffff')
+    for (const cv of [c, fx]){ cv.width = W * dpr; cv.height = H * dpr; }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); fctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cx = W / 2; cy = H * .46;
+    R = Math.min(W * .41, H * .36, 340);
+    const cant = Math.min(Math.floor(W * H / 2600), 240);
+    estrellas = Array.from({length:cant}, () => ({
+      x:Math.random() * W, y:Math.random() * H, z:Math.random() * .8 + .2,
+      r:Math.random() * 1.3 + .3, f:Math.random() * 6.28, v:Math.random() * .03 + .008,
+      col:Math.random() < .15 ? '#ffd1ec' : (Math.random() < .15 ? '#bfefff' : '#fff')
     }));
+    crearGalaxia();
+    nombre.style.top = cy + 'px';
+    subt.style.top = (cy + nombre.offsetHeight * .5 + 2) + 'px';
   }
 
-  function nuevaFugaz(){
-    fugaces.push({x:Math.random()*W*.8+W*.2, y:Math.random()*H*.4, l:Math.random()*80+60, vida:1});
-  }
+  const posU = [[.18,.18],[.82,.25],[.5,.84]];
+  let activo = true, t = 0, rotGal = 0;
+  document.addEventListener('visibilitychange', () => { activo = !document.hidden; if (activo) requestAnimationFrame(cuadro); });
 
-  let activo = true;
-  document.addEventListener('visibilitychange',()=>{ activo = !document.hidden; if(activo) requestAnimationFrame(dibujar); });
+  function cuadro(){
+    if (!activo) return;
+    t++;
+    if (!arrastrando){ rotExtra += velRot; velRot *= .95; }
+    incl += (inclObj - incl) * .08;
+    parX += (parXo - parX) * .05; parY += (parYo - parY) * .05;
+    rotGal += .0006 + velRot * .15;
 
-  function dibujar(){
-    if(!activo) return;
-    ctx.clearRect(0,0,W,H);
-    for(const s of estrellas){
+    ctx.clearRect(0, 0, W, H);
+    ctx.save();
+    ctx.translate(cx + parX * .6, cy + parY * .6);
+    ctx.scale(1, .55 + incl * .6);
+    ctx.rotate(rotGal);
+    ctx.globalAlpha = .55;
+    ctx.drawImage(gal, -galS / 2, -galS / 2, galS, galS);
+    ctx.restore();
+
+    for (const s of estrellas){
       s.f += s.v;
-      ctx.globalAlpha = .35 + Math.abs(Math.sin(s.f))*.65;
+      ctx.globalAlpha = (.3 + Math.abs(Math.sin(s.f)) * .7) * s.z;
       ctx.fillStyle = s.col;
-      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.283); ctx.fill();
+      ctx.beginPath(); ctx.arc(s.x + parX * s.z, s.y + parY * s.z, s.r, 0, 6.283); ctx.fill();
     }
-    if(Math.random() < .006 && fugaces.length < 2) nuevaFugaz();
-    for(let k=fugaces.length-1;k>=0;k--){
-      const f=fugaces[k];
-      const g=ctx.createLinearGradient(f.x,f.y,f.x+f.l,f.y-f.l*.45);
-      g.addColorStop(0,'rgba(255,255,255,'+f.vida+')'); g.addColorStop(1,'rgba(255,255,255,0)');
-      ctx.globalAlpha=1; ctx.strokeStyle=g; ctx.lineWidth=2;
-      ctx.beginPath(); ctx.moveTo(f.x,f.y); ctx.lineTo(f.x+f.l,f.y-f.l*.45); ctx.stroke();
+
+    ctx.globalAlpha = .16; ctx.strokeStyle = '#d9c8ff'; ctx.lineWidth = 1;
+    for (const f of [.6, .8, 1]){
+      ctx.beginPath(); ctx.ellipse(cx, cy, R * f, R * f * incl, 0, 0, 6.283); ctx.stroke();
+    }
+
+    if (Math.random() < .005 && fugaces.length < 2)
+      fugaces.push({x:Math.random() * W * .8 + W * .2, y:Math.random() * H * .4, l:Math.random() * 80 + 60, vida:1});
+    for (let k = fugaces.length - 1; k >= 0; k--){
+      const f = fugaces[k];
+      const g = ctx.createLinearGradient(f.x, f.y, f.x + f.l, f.y - f.l * .45);
+      g.addColorStop(0, 'rgba(255,255,255,' + f.vida + ')'); g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.globalAlpha = 1; ctx.strokeStyle = g; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(f.x, f.y); ctx.lineTo(f.x + f.l, f.y - f.l * .45); ctx.stroke();
       f.x -= 7; f.y += 3.2; f.vida -= .018;
-      if(f.vida<=0) fugaces.splice(k,1);
+      if (f.vida <= 0) fugaces.splice(k, 1);
     }
-    requestAnimationFrame(dibujar);
+
+    for (const o of objs){
+      if (o.tipo === 'p'){
+        const p = o.d, f = [.6, .8, 1][p.r];
+        o.ang += abierta ? .0012 : .004 / (1 + p.r * .45);
+        const a = o.ang + rotExtra;
+        const x = cx + Math.cos(a) * R * f, y = cy + Math.sin(a) * R * f * incl;
+        const prof = Math.sin(a);
+        o.el.style.transform = `translate3d(${x}px,${y}px,0) scale(${.72 + (prof + 1) * .2})`;
+        o.el.style.opacity = .55 + (prof + 1) * .225;
+        o.el.style.zIndex = prof > 0 ? 6 : 4;
+      } else {
+        const [px, py] = posU[o.k];
+        const flot = Math.sin(t * .012 + o.k * 2) * 6;
+        o.el.style.transform = `translate3d(${px * W + parX * 1.4}px,${py * H + flot + parY * 1.4}px,0)`;
+      }
+    }
+
+    // capa de efectos (supernova)
+    if (chispas.length || ondas.length){
+      fctx.clearRect(0, 0, W, H);
+      fctx.globalCompositeOperation = 'lighter';
+      for (let k = ondas.length - 1; k >= 0; k--){
+        const w = ondas[k];
+        w.r += w.v; w.v *= .96; w.vida -= .028;
+        if (w.vida <= 0){ ondas.splice(k, 1); continue; }
+        fctx.globalAlpha = w.vida; fctx.strokeStyle = w.col; fctx.lineWidth = 3 * w.vida + .5;
+        fctx.beginPath(); fctx.arc(w.x, w.y, w.r, 0, 6.283); fctx.stroke();
+      }
+      for (let k = chispas.length - 1; k >= 0; k--){
+        const s = chispas[k];
+        s.x += s.vx; s.y += s.vy; s.vx *= .95; s.vy *= .95; s.vida -= .022;
+        if (s.vida <= 0){ chispas.splice(k, 1); continue; }
+        fctx.globalAlpha = s.vida; fctx.fillStyle = s.col;
+        fctx.beginPath(); fctx.arc(s.x, s.y, s.s * (0.5 + s.vida), 0, 6.283); fctx.fill();
+      }
+      fctx.globalCompositeOperation = 'source-over';
+      if (!chispas.length && !ondas.length) fctx.clearRect(0, 0, W, H);
+    }
+
+    requestAnimationFrame(cuadro);
   }
 
-  let rt; addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(iniciar,200); });
-  iniciar(); dibujar();
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(iniciar, 200); });
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(iniciar);
+  iniciar(); cuadro();
 })();
 </script>
 </body>
